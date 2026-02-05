@@ -1,6 +1,8 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -24,16 +26,26 @@ typedef struct record {
 
 typedef struct node {
 	Record data;
-	Node* Next;
-	Node* previous;
+	struct node* next;
+	struct node* prev;
 }Node;
 
+//create node
+Node* createNode(Record newRecord);
+
+//insert at front
+int insertFront(Node** pList, Record newRecord);
+
+//read file, 1 line
+int readFILE(FILE* input, Record* newRecord);
+
 //load, gets data from file into list
+int loadData(Node** pList, FILE* input);
 
 //store, this takes from list  file and stores into file overwritting data
 
 //display, prints all records, or all records that match an artist
-
+void printList(Node* pList);
 //insert, adds new node from user input, probably at front
 
 //delete, removes node
