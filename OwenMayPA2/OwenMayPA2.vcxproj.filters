@@ -28,9 +28,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\musicPlayList.csv">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="musicPlayList.csv">
       <Filter>Resource Files</Filter>
     </None>

@@ -43,11 +43,13 @@ int readFILE(FILE* input, Record* newRecord);
 int loadData(Node** pList, FILE* input);
 
 //store, this takes from list  file and stores into file overwritting data
+int storeData(Node* pList, FILE* output);
 
 //display, prints all records, or all records that match an artist
 void printList(Node* pList);
-//insert, adds new node from user input, probably at front
 
+//insert, adds new node from user input, probably at front
+void promptForRecord(Node** pList);
 //delete, removes node
 
 //edit, the user finds a record by artist (if multiple they pick one of them) and they can edit any fields
@@ -61,5 +63,5 @@ void printList(Node* pList);
 //shuffle, shuffle the list
 
 //exit, saves list into file, overwritting data
-
+void exitProgram(Node* pList, FILE* output, FILE* input);
 #endif
