@@ -9,16 +9,18 @@ int main(void) {
         return 1;
     }
 
+
     Node* list = NULL;
     if (loadData(&list, musicRead)) {
         printf("Loaded successfully\n");
     } 
 
-    FILE* musicWrite = fopen("muiscPlayList.csv", "w");
+    FILE* musicWrite = fopen("musicPlayList.csv", "w");
+
+    promptForRecord(&list);
 
 
-
-    printList(list);
+    play1_song(list);
     //leaving program
     exitProgram(list, musicWrite, musicRead);
 	return 1;

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <Windows.h>
 
 //structs
 typedef struct duration {
@@ -46,7 +47,12 @@ int loadData(Node** pList, FILE* input);
 int storeData(Node* pList, FILE* output);
 
 //display, prints all records, or all records that match an artist
-void printList(Node* pList);
+void printList(Node* pList); // need to add option to print all or just 1
+
+void printAsk(Node* pList);
+
+void print_current(Node* pList);
+
 
 //insert, adds new node from user input, probably at front
 void promptForRecord(Node** pList);
@@ -59,7 +65,7 @@ void promptForRecord(Node** pList);
 //rate, assign a value 1-5 to a song overwritting previous
 
 //play, displays current record for some time, then playing the next until all are done
-
+void play1_song(Node* pList);
 //shuffle, shuffle the list
 
 //exit, saves list into file, overwritting data

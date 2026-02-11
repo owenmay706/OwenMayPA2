@@ -265,3 +265,36 @@ void promptForRecord(Node** pList)
         printf("Failed to insert record.\n");
     }
 }
+
+void print_current(Node* pList) {
+    Node* current = pList;
+    
+      printf("  Artist: %s\n", current->data.artist);
+      printf("  Album: %s\n", current->data.album);
+      printf("  Title: %s\n", current->data.title);
+      printf("  Genre: %s\n", current->data.genre);
+      printf("  Length: %d:%02d\n", current->data.length.minutes,
+            current->data.length.seconds);
+      printf("  Times Played: %d\n", current->data.times_played);
+      printf("  Rating: %d/5\n", current->data.rating);
+      printf("-----------------------------------------\n");
+
+    
+}
+
+void play1_song(Node* pList) {
+    print_current(pList);
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+    printf("."); 
+    Sleep(500);
+    printf(".\n");
+    Sleep(500);
+    printf("Finished Playing");
+}
+
+void printAsk(Node* pList) {
+
+}
+   
