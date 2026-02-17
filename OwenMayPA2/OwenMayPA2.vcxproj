@@ -130,8 +130,10 @@
     <ClInclude Include="header.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fileFunctions.c" />
     <ClCompile Include="functions.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="nodeFunctions.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="musicPlayList.csv" />
