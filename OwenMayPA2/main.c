@@ -17,7 +17,7 @@ int main(void) {
 
     FILE* musicWrite = fopen("musicPlayList.csv", "w");
 
-    promptForRecord(&list);
+    //promptForRecord(&list);
 
 
     play1_song(list);
