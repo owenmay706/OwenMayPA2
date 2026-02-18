@@ -17,7 +17,7 @@ int menu(void) {
 		printf("Loaded successfully\n");
 	}
 
-	FILE* musicWrite = fopen("musicPlayList.csv", "w");
+	fclose(musicRead);	
 
 
 	int choice = 0;
@@ -64,14 +64,31 @@ int menu(void) {
 
 		switch (choice) {
 		case 1: //load
+		{
 			destroyList(&list);
 			list = NULL;
-			loadData(&list, musicRead);
+			musicRead = fopen("musicPlayList.csv", "r");
+			if (musicRead == NULL) {
+				printf("Cannot open file to reload playlist\n");
+				break;
+			}
+			if (loadData(&list, musicRead)) {
+				printf("Reloaded successfully\n");
+			}
+			fclose(musicRead);
+		}
 			break;
 		case 2: //store
-			
+		{
+			FILE* musicWrite = fopen("musicPlayList.csv", "w");
+			if (musicWrite == NULL) {
+				printf("Error: Cannot open file for writing\n");
+				break;
+			}
 			storeData(list, musicWrite);
+			fclose(musicWrite);
 			break;
+		}
 		case 3: //display
 			//need some function to determine if they wish to display from a certain artist, or all songs
 			printList(list);
@@ -99,13 +116,24 @@ int menu(void) {
 			shuffle(list);
 			break;
 		case 11://exit
-			exitProgram(&list, musicWrite, musicRead);
+		{
+			FILE* musicWrite = fopen("musicPlayList.csv", "w");
+			if (musicWrite == NULL) {
+				printf("Error: Cannot open file for writing!\n");
+				destroyList(&list);
+				return(1);
+			}
+			exitProgram(&list, musicWrite);
 			return(0);
 			break;
-		default: 
-			exitProgram(&list, musicWrite, musicRead);
+		}
+		default:
+		{
+			FILE* musicWrite = fopen("musicPlayList.csv", "w");
+			exitProgram(&list, musicWrite);
 			return(0);
 			break;
+		}
 		}
 
 		if (choice != 11) {

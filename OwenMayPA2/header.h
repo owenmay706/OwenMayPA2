@@ -79,7 +79,7 @@ void playAllSong(Node* pList);
 void shuffle(Node* pList);
 
 //exit, saves list into file, overwritting data
-void exitProgram(Node** pList, FILE* output, FILE* input);
+void exitProgram(Node** pList, FILE* output);
 void destroyList(Node** pList);
 
 //menu, allows access to load, store, display, insert, delete, edit, sort, rate, play, shuffle, and exit

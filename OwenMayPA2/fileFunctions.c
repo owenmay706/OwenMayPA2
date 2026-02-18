@@ -6,66 +6,80 @@ int readFILE(FILE* input, Record* newRecord) {
         return 0;
     }
 
-    // Remove newline
+  
     buffer[strcspn(buffer, "\n")] = '\0';
 
     char* ptr = buffer;
-    char* end;
 
-    // get artist
+    // artist might have quotes
     if (*ptr == '"') {
-        ptr++;  // skip opening quote
-        end = strchr(ptr, '"');
+        ptr++;  // skip opening "
+        char* end = strchr(ptr, '"');
         if (!end) return 0;
-        strncpy(newRecord->artist, ptr, end - ptr);
-        newRecord->artist[end - ptr] = '\0';
-        ptr = end + 2;  // skip closing quote and comma
+        size_t len = end - ptr;
+        if (len >= sizeof(newRecord->artist)) len = sizeof(newRecord->artist) - 1;
+        strncpy(newRecord->artist, ptr, len);
+        newRecord->artist[len] = '\0';
+        ptr = end + 1;  // after closing "
     }
     else {
-        end = strchr(ptr, ',');
+        char* end = strchr(ptr, ',');
         if (!end) return 0;
-        strncpy(newRecord->artist, ptr, end - ptr);
-        newRecord->artist[end - ptr] = '\0';
-        ptr = end + 1;
+        size_t len = end - ptr;
+        if (len >= sizeof(newRecord->artist)) len = sizeof(newRecord->artist) - 1;
+        strncpy(newRecord->artist, ptr, len);
+        newRecord->artist[len] = '\0';
+        ptr = end;
     }
+    if (*ptr == ',') ptr++;  // skip comma after artist
 
-    // get album
-    end = strchr(ptr, ',');
+    //album
+    char* end = strchr(ptr, ',');
     if (!end) return 0;
-    strncpy(newRecord->album, ptr, end - ptr);
-    newRecord->album[end - ptr] = '\0';
+    size_t len = end - ptr;
+    if (len >= sizeof(newRecord->album)) len = sizeof(newRecord->album) - 1;
+    strncpy(newRecord->album, ptr, len);
+    newRecord->album[len] = '\0';
     ptr = end + 1;
 
-    // get title
+   //title
     end = strchr(ptr, ',');
     if (!end) return 0;
-    strncpy(newRecord->title, ptr, end - ptr);
-    newRecord->title[end - ptr] = '\0';
+    len = end - ptr;
+    if (len >= sizeof(newRecord->title)) len = sizeof(newRecord->title) - 1;
+    strncpy(newRecord->title, ptr, len);
+    newRecord->title[len] = '\0';
     ptr = end + 1;
 
-    // get genre
+  //genre
     end = strchr(ptr, ',');
     if (!end) return 0;
-    strncpy(newRecord->genre, ptr, end - ptr);
-    newRecord->genre[end - ptr] = '\0';
+    len = end - ptr;
+    if (len >= sizeof(newRecord->genre)) len = sizeof(newRecord->genre) - 1;
+    strncpy(newRecord->genre, ptr, len);
+    newRecord->genre[len] = '\0';
     ptr = end + 1;
 
-    // get time 
+    //length
     int minutes, seconds;
     if (sscanf(ptr, "%d:%d", &minutes, &seconds) != 2) return 0;
     newRecord->length.minutes = minutes;
     newRecord->length.seconds = seconds;
+
+   
     ptr = strchr(ptr, ',');
     if (!ptr) return 0;
     ptr++;
 
-    // get times_played
+    // times played
     newRecord->times_played = atoi(ptr);
+
+    
     ptr = strchr(ptr, ',');
     if (!ptr) return 0;
     ptr++;
 
-    // get rating
+    // rating
     newRecord->rating = atoi(ptr);
 
     return 1;

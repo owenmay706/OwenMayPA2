@@ -52,10 +52,12 @@ void printAsk(Node* pList) {
     printf("\nTotal records: %d\n", count - 1);
 }
 
-void exitProgram(Node** pList, FILE* output, FILE* input) {
+void exitProgram(Node** pList, FILE* output) {
     storeData(*pList, output);
-    fclose(output);
-    fclose(input);
+    if (output != NULL) {
+        fclose(output);
+    }
+  
     destroyList(pList);
 }
 
