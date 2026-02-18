@@ -60,7 +60,7 @@ int menu(void) {
 
 			break;
 
-		} while (1); // placeholder, this will be while the input isn't good
+		} while (1); 
 
 		switch (choice) {
 		case 1: //load
@@ -90,10 +90,40 @@ int menu(void) {
 			break;
 		}
 		case 3: //display
-			//need some function to determine if they wish to display from a certain artist, or all songs
-			printList(list);
-			printAsk(list); 
-			break;
+		{
+			int displayChoice = 0;
+			do {
+				
+				printf("\nDisplay Options:\n");
+				printf("1 - Show ALL songs in the playlist\n");
+				printf("2 - Show songs by a specific artist\n");
+				printf("Enter your choice (1 or 2): ");
+
+				if (scanf("%d", &displayChoice) != 1) {
+					while (getchar() != '\n'); 
+					printf("\nInvalid input. Please enter 1 or 2.\n");
+					printf("Press Enter to try again...");
+					getchar();
+					displayChoice = 0;
+					continue;
+				}
+				while (getchar() != '\n'); 
+
+				if (displayChoice == 1) {
+					printList(list);
+					break;
+				}
+				else if (displayChoice == 2) {
+					printAsk(list);   
+					break;
+				}
+				else {
+					printf("\nInvalid choice. Please enter 1 or 2.\n");
+					printf("Press Enter to try again...");
+					getchar();
+				}
+			} while (1); 
+		}break;
 		case 4: //insert
 			promptForRecord(&list);
 			break;

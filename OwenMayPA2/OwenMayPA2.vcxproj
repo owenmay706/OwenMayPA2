@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />
+    <ClInclude Include="tests.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="editFunctions.c" />
@@ -137,6 +138,7 @@
     <ClCompile Include="menu.c" />
     <ClCompile Include="nodeFunctions.c" />
     <ClCompile Include="playFunctions.c" />
+    <ClCompile Include="tests.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Downloads\musicPlayList %28default%29.csv" />
