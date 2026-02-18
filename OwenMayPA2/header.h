@@ -83,5 +83,5 @@ void exitProgram(Node** pList, FILE* output, FILE* input);
 void destroyList(Node** pList);
 
 //menu, allows access to load, store, display, insert, delete, edit, sort, rate, play, shuffle, and exit
-void menu(void);
+int menu(void);
 #endif

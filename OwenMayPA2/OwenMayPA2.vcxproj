@@ -139,6 +139,7 @@
     <ClCompile Include="playFunctions.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Downloads\musicPlayList %28default%29.csv" />
     <None Include="musicPlayList.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

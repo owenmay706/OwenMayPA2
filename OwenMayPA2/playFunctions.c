@@ -73,6 +73,4 @@ void shuffle(Node* pList) {
     free(songs);
     printf("\nFinished shuffled playlist!\n");
 
-    free(songs);
-    printf("\nFinished shuffled playlist!\n");
 }

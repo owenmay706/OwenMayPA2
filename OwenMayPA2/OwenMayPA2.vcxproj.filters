@@ -46,5 +46,8 @@
     <None Include="musicPlayList.csv">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\..\..\Downloads\musicPlayList %28default%29.csv">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
