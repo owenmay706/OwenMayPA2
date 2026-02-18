@@ -1,8 +1,5 @@
 #include "header.h"
 
-
-
-
 void printList(Node* pList) {
     Node* current = pList;
     int count = 1;
@@ -17,17 +14,7 @@ void printList(Node* pList) {
     printf("=========================================\n\n");
 
     while (current != NULL) {
-        printf("Record #%d:\n", count);
-        printf("  Artist: %s\n", current->data.artist);
-        printf("  Album: %s\n", current->data.album);
-        printf("  Title: %s\n", current->data.title);
-        printf("  Genre: %s\n", current->data.genre);
-        printf("  Length: %d:%02d\n", current->data.length.minutes,
-            current->data.length.seconds);
-        printf("  Times Played: %d\n", current->data.times_played);
-        printf("  Rating: %d/5\n", current->data.rating);
-        printf("-----------------------------------------\n");
-
+        print_current(current);
         current = current->next;
         count++;
     }
@@ -56,18 +43,7 @@ void printAsk(Node* pList) {
 
     while (current != NULL) {
         if (strcmp(current->data.artist, artist) == 0) {
-
-
-            printf("Record #%d:\n", count);
-            printf("  Artist: %s\n", current->data.artist);
-            printf("  Album: %s\n", current->data.album);
-            printf("  Title: %s\n", current->data.title);
-            printf("  Genre: %s\n", current->data.genre);
-            printf("  Length: %d:%02d\n", current->data.length.minutes,
-                current->data.length.seconds);
-            printf("  Times Played: %d\n", current->data.times_played);
-            printf("  Rating: %d/5\n", current->data.rating);
-            printf("-----------------------------------------\n");
+            print_current(current);
         }
         current = current->next;
         count++;
@@ -160,8 +136,8 @@ void promptForRecord(Node** pList)
     }
 }
 
-void print_current(Node* pList) {
-    Node* current = pList;
+void print_current(Node* node) {
+    Node* current = node;
     
       printf("  Artist: %s\n", current->data.artist);
       printf("  Album: %s\n", current->data.album);
@@ -172,90 +148,5 @@ void print_current(Node* pList) {
       printf("  Times Played: %d\n", current->data.times_played);
       printf("  Rating: %d/5\n", current->data.rating);
       printf("-----------------------------------------\n");
-
     
-}
-
-void play1_song(Node* pList) {
-    print_current(pList);
-    Sleep(500);
-    printf(".");
-    Sleep(500);
-    printf("."); 
-    Sleep(500);
-    printf(".\n");
-    Sleep(500);
-    printf("Finished Playing");
-}
-
-int rateSong(Node** pList) {
-    Record target;
-    Node* current = *pList;
-
-    //get target
-    printf("Enter song title to rate: ");
-    fgets(target.title, sizeof(target.title), stdin);
-    target.title[strcspn(target.title, "\n")] = '\0';
-
-    // find target 
-    while (current != NULL && strcmp(current->data.title, target.title) != 0) {
-        current = current->next;
-    }
-
-    if (current == NULL) {
-        printf("Song not found.\n");
-        return 0;
-    }
-
-    // get valid rating
-    do {
-        printf("Enter rating (1-5): ");
-        if (scanf("%d", &current->data.rating) != 1) {
-            printf("Please enter a number.\n");
-            current->data.rating = 0;
-        }
-
-        while (getchar() != '\n');
-
-    } while (current->data.rating < 1 || current->data.rating > 5);
-
-    return 1;
-}
-
-int deleteSong(Node** pList) {
-    char target[100];
-    Node* current = *pList;
-
-    //finding song
-    printf("Enter song title to delete: ");
-    fgets(target, sizeof(target), stdin);
-    target[strcspn(target, "\n")] = '\0';
-
-    while (current != NULL && strcmp(current->data.title, target) != 0) {
-        current = current->next;
-    }
-
-    if (current == NULL) {
-        printf("Song not found.\n");
-        return 0;
-    }
-
-    //removing song 
-    if (current->prev == NULL) {
-        *pList = current->next;
-
-        if (current->next != NULL) {
-            current->next->prev = NULL;
-        }
-    }
-    else {
-        current->prev->next = current->next;
-
-        if (current->next != NULL) {
-            current->next->prev = current->prev;
-        }
-    }
-
-    free(current);
-    return 1;
 }

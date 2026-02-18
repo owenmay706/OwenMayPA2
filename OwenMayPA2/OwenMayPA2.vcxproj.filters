@@ -32,6 +32,15 @@
     <ClCompile Include="nodeFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="playFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="musicPlayList.csv">

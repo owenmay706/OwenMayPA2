@@ -53,6 +53,8 @@ void printAsk(Node* pList);
 
 void print_current(Node* pList);
 
+//finds node based on song title
+Node* FindSongTitle(Node* pList);
 
 //insert, adds new node from user input, probably at front
 void promptForRecord(Node** pList);
@@ -60,20 +62,26 @@ void promptForRecord(Node** pList);
 int deleteSong(Node** pList);
 
 //edit, the user finds a record by artist (if multiple they pick one of them) and they can edit any fields
+void editSong(Node** pList);
 
 //sort, sort nodes by some metric, maybe song title alphabetically
+void swapRecords(Record* a, Record* b);
+void sortByTitle(Node* pList);
 
 //rate, assign a value 1-5 to a song overwritting previous
 int rateSong(Node** pList);
 
 //play, displays current record for some time, then playing the next until all are done
 void play1_song(Node* pList);
+void playAllSong(Node* pList);
+
 //shuffle, plays songs in random order, does not change the list
+void shuffle(Node* pList);
 
 //exit, saves list into file, overwritting data
-void exitProgram(Node* pList, FILE* output, FILE* input);
+void exitProgram(Node** pList, FILE* output, FILE* input);
 void destroyList(Node** pList);
 
 //menu, allows access to load, store, display, insert, delete, edit, sort, rate, play, shuffle, and exit
-
+void menu(void);
 #endif

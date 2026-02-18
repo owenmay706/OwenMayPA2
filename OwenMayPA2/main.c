@@ -1,6 +1,8 @@
 #include "header.h"
 
 int main(void) {
+    //seeding rand
+    srand((unsigned int)time(NULL));
 	
     //opening files
     FILE* musicRead = fopen("musicPlayList.csv", "r");
@@ -17,11 +19,10 @@ int main(void) {
 
     FILE* musicWrite = fopen("musicPlayList.csv", "w");
 
-    //promptForRecord(&list);
+    // menu goes here
 
 
-    play1_song(list);
-    //leaving program
+   
     exitProgram(list, musicWrite, musicRead);
 	return 1;
 }
